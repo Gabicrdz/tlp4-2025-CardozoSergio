@@ -1,58 +1,73 @@
-## Analisis final:
+# Análisis final
 
-### ¿Qué diferencias, ventajas y desventajas encontrás entre usar funciones constructoras con prototype y usar class?
+## ¿Qué diferencias, ventajas y desventajas encontrás entre usar funciones constructoras con `prototype` y usar `class`?
 
-La diferencia entre funciones constructoras con prototype y class en JavaScript es más de sintaxis y legibilidad que de funcionamiento, porque internamente class sigue usando prototipos por detras.
+La diferencia principal entre funciones constructoras con `prototype` y `class` en JavaScript es mayormente de sintaxis y legibilidad, ya que internamente `class` sigue usando prototipos por detrás.
 
-**Ventajas de funciones constructoras con protoytpe:**
+**Ventajas de funciones constructoras con `prototype`:**
 
--Es compatible con versiones antiguas de JavaScript. 
--Útiles para entender cómo funciona el modelo de objetos en JS.
--Control total sobre cómo funciona la herencia, qué prototipo se usa, y cómo se conectan las cadenas de prototipos.
+- Compatible con versiones antiguas de JavaScript.  
+- Útiles para entender cómo funciona el modelo de objetos en JS.  
+- Ofrecen control total sobre la herencia, qué prototipo se usa y cómo se conectan las cadenas de prototipos.
 
-**Desventajas de funciones constructoras con prototype:**
+**Desventajas de funciones constructoras con `prototype`:**
 
--Sintaxis más larga y menos intuitiva para principiantes.
--Herencia entre varias funciones constructoras es más tediosa de implementar.
--Es más fácil cometer errores si no se utiliza new.
+- Sintaxis más larga y menos intuitiva para principiantes.  
+- Herencia más tediosa de implementar cuando hay varias funciones constructoras.  
+- Fácil cometer errores si se olvida usar `new`.
 
-**Ventajas de Class:**
+**Ventajas de `class`:**
 
--Sintaxis más limpia, clara y cercana a lenguajes como Java, C# o Python.
--Más intuitivo para quienes utilizaron POO clasico.
--Facilita la lectura y mantenimiento.
+- Sintaxis más limpia, clara y cercana a lenguajes como Java, C# o Python.  
+- Más intuitivo para quienes vienen de POO clásica.  
+- Facilita la lectura y mantenimiento del código.
 
-**Desventajas de Class:**
+**Desventajas de `class`:**
 
--No funciona en entornos muy antiguos sin transpilar.
--Menos control directo sobre el prototipo si se hace algo muy de bajo nivel.
--Sigue siendo prototype por detras, lo que puede confundir.
+- No funciona en entornos muy antiguos sin transpilar.  
+- Menos control directo sobre el prototipo para operaciones muy avanzadas.  
+- Sigue siendo prototipo por detrás, lo que puede generar confusión.
 
-### ¿Cuáles son las ventajas de usar getters y setters?
+---
 
-**1.Encapsulación**
-Permiten proteger los datos internos de un objeto para que no puedan ser modificados directamente. Esto ayuda a mantener la integridad de la información.
-**2. Validaciones y control de datos**
-Posibilitan agregar reglas y restricciones cuando se modifica un valor, evitando datos incorrectos o no deseados.
-**3. Interfaz más simple y clara**
-Se accede a las propiedades como si fueran variables normales, lo que hace que el código sea más legible y fácil de usar.
-**4.Flexibilidad para cambios futuros**
-Si en un futuro se requiere agregar lógica al acceder o modificar una propiedad, se puede hacer sin necesidad de cambiar el código que ya la utiliza.
-**5. Mejora del mantenimiento del código**
-Centralizan la lógica de acceso y modificación de datos, lo que facilita encontrar y corregir errores.
+## ¿Cuáles son las ventajas de usar getters y setters?
 
-### ¿Qué problemas pueden surgir al modificar prototipos nativos como String?
+1. **Encapsulación**  
+Protegen los datos internos de un objeto para evitar modificaciones directas, manteniendo la integridad de la información.
 
-**1.Conflictos con otras librerías o código existente**
-Si otra librería define un método con el mismo nombre, la implementación podría sobrescribirla o ser sobrescrita, causando errores difíciles de depurar.
-**2.Riesgo con futuras versiones del lenguaje**
-Un nuevo método estándar en JavaScript con el mismo nombre podría generar conflictos y comportamientos impredecibles.
-**3.Impacto en el rendimiento**
-Algunos motores de JavaScript optimizan peor los objetos cuyos prototipos han sido modificados.
-**4.Mantenimiento más difícil**
-Otros desarrolladores pueden confundirse al ver métodos personalizados en objetos nativos, ya que no son parte de la API estándar.
+2. **Validaciones y control de datos**  
+Permiten agregar reglas al modificar valores, evitando datos incorrectos o inválidos.
 
-### Teniendo en cuenta un objeto personPrototype que contiene un método greet, ¿qué diferencias encontrás entre asignar ese método directamente al prototype de una función constructora o usar Object.assign?
+3. **Interfaz más simple y clara**  
+Se accede a las propiedades como variables normales, haciendo el código más legible y fácil de usar.
 
--Asignar directamente al prototype: agregas métodos uno por uno, con control total y sin riesgo alto de sobrescribir.
--Usar Object.assign: copias varios métodos de golpe desde otro objeto, es más rápido pero puede sobrescribir métodos ya existentes y es menos explícito.
+4. **Flexibilidad para cambios futuros**  
+Facilitan agregar lógica adicional sin modificar el código que ya usa esas propiedades.
+
+5. **Mejora del mantenimiento del código**  
+Centralizan la lógica de acceso y modificación, simplificando la detección y corrección de errores.
+---
+
+## ¿Qué problemas pueden surgir al modificar prototipos nativos como `String`?
+
+1. **Conflictos con otras librerías o código existente**  
+Si otra librería define un método con el mismo nombre, puede sobrescribir tu implementación o viceversa, generando errores difíciles de depurar.
+
+2. **Riesgo con futuras versiones del lenguaje**  
+Nuevos métodos estándar con nombres iguales pueden causar conflictos y comportamientos inesperados.
+
+3. **Impacto en el rendimiento**  
+Algunos motores de JavaScript optimizan peor los objetos con prototipos modificados dinámicamente.
+
+4. **Mantenimiento más difícil**  
+Otros desarrolladores pueden confundirse al encontrar métodos personalizados en objetos nativos, pues no forman parte de la API estándar.
+
+---
+
+## Teniendo en cuenta un objeto `personPrototype` que contiene un método `greet`, ¿qué diferencias encontrás entre asignar ese método directamente al `prototype` de una función constructora o usar `Object.assign`?
+
+- **Asignar directamente al `prototype`:**  
+Se agregan métodos uno por uno, con control total y menor riesgo de sobrescribir métodos existentes.
+
+- **Usar `Object.assign`:**  
+Permite copiar varios métodos de golpe desde otro objeto; es más rápido pero puede sobrescribir métodos existentes y resulta menos explícito.
